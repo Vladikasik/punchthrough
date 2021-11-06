@@ -4,12 +4,14 @@ import time
 
 
 def call_other(addr, sock):
+    print('call func started', addr)
     for _ in range(100):
         print(f'"test2" -> {addr}')
         sock.sendto(b'test2', addr)
         time.sleep(1)
         
 def listen(sock):
+    print('lstn func started')
     resp, addr = sock.recvfrom(1024)
     resp = resp.decode('utf-8')
     print(f'{resp} <- "{addr}"')
