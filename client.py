@@ -20,8 +20,8 @@ def call_other(addr, sock):
     
 def listen(sock):
     while 1:
-        resp = sock.recvfrom(1024).decode('utf-8')
-        print(f'idk from where, but -> "{resp}"')
+        resp, addr = sock.recvfrom(1024).decode('utf-8')
+        print(f'{resp} <- "{addr}"')
     
 public = resp.split('$')[0].split(', ')
 pb_addr = (public[0][1:], int(public[1][:-1]))
