@@ -16,8 +16,8 @@ print(f'got data from server -> "{resp}"')
 
 def call_other(addr, sock):
     for _ in range(10):
-        print(f'"test" -> {addr}')
-        sock.sendto(b'test1', addr)
+        print(f'"test2" -> {addr}')
+        sock.sendto(b'test2', addr)
         
 def listen(sock):
     resp, addr = sock.recvfrom(1024)
