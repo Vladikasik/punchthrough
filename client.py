@@ -33,14 +33,15 @@ private = resp.split('$')[1].split('#')
 pr_addr = (private[0], int(private[1]))
 print('another node pr_addr', pr_addr)
 
-pub = mp.Process(target=call_other, args=(pb_addr, sock,))
-priv = mp.Process(target=call_other, args=(pr_addr, sock,))
-lstn = mp.Process(target=listen, args=(sock,))
-lstn.start()
-pub.start()
-priv.start()
+if __name__ == '__main__':
+    pub = mp.Process(target=call_other, args=(pb_addr, sock,))
+    priv = mp.Process(target=call_other, args=(pr_addr, sock,))
+    lstn = mp.Process(target=listen, args=(sock,))
+    lstn.start()
+    pub.start()
+    priv.start()
 
-lstn.join() # дождедтся окончания листена
+    lstn.join() # дождедтся окончания листена
 
-pub.terminate()
-priv.terminate()
+    pub.terminate()
+    priv.terminate()
