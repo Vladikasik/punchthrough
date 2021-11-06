@@ -13,6 +13,7 @@ def call_other(addr, sock):
 def listen(sock):
     print('lstn func started')
     resp, addr = sock.recvfrom(1024)
+    print('#\n'*10)
     resp = resp.decode('utf-8')
     print(f'{resp} <- "{addr}"')
     return 0
