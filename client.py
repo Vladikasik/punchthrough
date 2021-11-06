@@ -46,11 +46,13 @@ if __name__ == '__main__':
     pub = mp.Process(target=call_other, args=(pb_addr, sock,))
     priv = mp.Process(target=call_other, args=(pr_addr, sock,))
     
+    print("make shure all others received msg from server")
+
     lstn.start()
     pub.start()
     priv.start()
 
-    lstn.join() # дождедтся окончания листена
+    lstn.join()
 
     pub.terminate()
     priv.terminate()
