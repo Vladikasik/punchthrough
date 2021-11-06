@@ -12,7 +12,7 @@ def call_other(addr, sock):
         
 def listen(sock):
     print('lstn func started')
-    resp, addr = sock.recvfrom(1024)
+    resp, addr = sock.recvfrom(512)
     print('#\n'*10)
     resp = resp.decode('utf-8')
     print(f'{resp} <- "{addr}"')
@@ -42,10 +42,10 @@ if __name__ == '__main__':
     pr_addr = (private[0], int(private[1]))
     print('another node pr_addr', pr_addr)
 
-
+    lstn = mp.Process(target=listen, args=(sock,))
     pub = mp.Process(target=call_other, args=(pb_addr, sock,))
     priv = mp.Process(target=call_other, args=(pr_addr, sock,))
-    lstn = mp.Process(target=listen, args=(sock,))
+    
     lstn.start()
     pub.start()
     priv.start()
