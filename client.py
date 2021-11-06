@@ -15,7 +15,7 @@ resp = resp.decode('utf-8')
 print(f'got data from server -> "{resp}"')
 
 def call_other(addr, sock):
-    while 1:
+    for _ in range(5):
         print(f'"test" -> {addr}')
         sock.sendto(b'test2', addr)
         
