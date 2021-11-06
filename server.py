@@ -14,7 +14,7 @@ def exchange(sock):
     data1 = data1 + '$' + str(addr1[0]) + str(addr1[1])
     data2 = data2 + '$' + str(addr2[0]) + str(addr2[1])
     
-    sock.sendto(data1.encode('urf-8'), addr2)
-    sock.sendto(data2.encode('urf-8'), addr1)
+    sock.sendto(data1.encode('utf-8'), addr2)
+    sock.sendto(data2.encode('utf-8'), addr1)
 while 1:
     exchange(sock)
