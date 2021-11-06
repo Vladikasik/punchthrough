@@ -16,7 +16,7 @@ print(f'got data from server -> "{resp}"')
 
 def call_other(addr, sock):
     for _ in range(10):
-        print(f'"test2" -> {addr}')
+        print(f'"test" -> {addr}')
         sock.sendto(b'test1', addr)
         
 def listen(sock):
@@ -33,6 +33,7 @@ private = resp.split('$')[1].split('#')
 pr_addr = (private[0], int(private[1]))
 print('another node pr_addr', pr_addr)
 
+<<<<<<< HEAD
 pub = mp.Process(target=call_other, args=(pb_addr, sock,))
 priv = mp.Process(target=call_other, args=(pr_addr, sock,))
 lstn = mp.Process(target=listen, args=(sock,))
@@ -44,3 +45,17 @@ lstn.join() # дождедтся окончания листена
 
 pub.terminate()
 priv.terminate()
+=======
+if __name__ == '__main__':
+    pub = mp.Process(target=call_other, args=(pb_addr, sock,))
+    priv = mp.Process(target=call_other, args=(pr_addr, sock,))
+    lstn = mp.Process(target=listen, args=(sock,))
+    lstn.start()
+    pub.start()
+    priv.start()
+
+    lstn.join() # дождедтся окончания листена
+
+    pub.terminate()
+    priv.terminate()
+>>>>>>> 4cbc6a068d38031a6fa3afbd844c816ad81c3fff
