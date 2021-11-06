@@ -10,7 +10,8 @@ to_send = priv[0] + '#' + str(priv[1])
 sock.sendto(to_send.encode('utf-8'), server)
 print(f'"{to_send}"" -> {server}')
 
-resp, addr = sock.recvfrom(1024).decode('utf-8')
+resp, addr = sock.recvfrom(1024)
+resp = resp.decode('utf-8')
 print(f'got data from server -> "{resp}"')
 
 def call_other(addr, sock):
