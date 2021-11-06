@@ -27,7 +27,7 @@ public = resp.split('$')[0].split(', ')
 pb_addr = (public[0][1:], int(public[1][:-1]))
 print('another node pb_addr', pb_addr) 
 
-private = resp.split('$')[0].split(', ')
+private = resp.split('$')[1].split(', ')
 pr_addr = (private[0][1:], int(private[1][:-1]))
 print('another node pr_addr', pr_addr)
 
