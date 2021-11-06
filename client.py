@@ -17,12 +17,12 @@ print(f'got data from server -> "{resp}"')
 def call_other(addr, sock):
     for _ in range(5):
         print(f'"test" -> {addr}')
-        sock.sendto(b'test2', addr)
+        sock.sendto(b'test1', addr)
         
 def listen(sock):
-    while 1:
-        resp, addr = sock.recvfrom(1024).decode('utf-8')
-        print(f'{resp} <- "{addr}"')
+    resp, addr = sock.recvfrom(1024)
+    resp = resp.decode('utf-8')
+    print(f'{resp} <- "{addr}"')
     
 public = resp.split('$')[0].split('#')
 pb_addr = (public[0], int(public[1]))
@@ -38,3 +38,8 @@ lstn = th.Thread(target=listen, args=[sock])
 lstn.start()
 pub.start()
 priv.start()
+
+lstn.join() # дождедтся окончания листена
+
+pub.kill()
+priv.kill()
