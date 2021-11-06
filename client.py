@@ -1,5 +1,5 @@
 from socket import *
-import threading as th
+import multiprocessing as mp
 priv = input('your private ip>> '), int(input('your private port>> '))
 server = ('89.108.79.2', 50666)
 
@@ -33,14 +33,14 @@ private = resp.split('$')[1].split('#')
 pr_addr = (private[0], int(private[1]))
 print('another node pr_addr', pr_addr)
 
-pub = th.Thread(target=call_other, args=(pb_addr, sock,))
-priv = th.Thread(target=call_other, args=(pr_addr, sock,))
-lstn = th.Thread(target=listen, args=(soc)
+pub = mp.Process(target=call_other, args=(pb_addr, sock,))
+priv = mp.Process(target=call_other, args=(pr_addr, sock,))
+lstn = mp.Process(target=listen, args=(sock,))
 lstn.start()
 pub.start()
 priv.start()
 
 lstn.join() # дождедтся окончания листена
 
-pub.deamon()
-priv.deamon()
+pub.terminate()
+priv.terminate()
