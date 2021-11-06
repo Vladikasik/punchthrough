@@ -15,6 +15,8 @@ def exchange(sock):
     data2 = data2 + '$' + str(addr2[0]) + '#' + str(addr2[1])
     
     sock.sendto(data1.encode('utf-8'), addr2)
+    print(f'sent "{data1}" to {addr2}')
     sock.sendto(data2.encode('utf-8'), addr1)
+    print(f'sent "{data2}" to {addr1}')
 while 1:
     exchange(sock)
