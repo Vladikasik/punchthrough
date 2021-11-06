@@ -7,7 +7,7 @@ sock = socket(AF_INET, SOCK_DGRAM)
 sock.bind(priv)
 
 to_send = priv[0] + '#' + str(priv[1])
-sock.sendto(to_send, server).encode('utf-8')
+sock.sendto(to_send.encode('utf-8'), server)
 print(f'"{to_send}"" -> {server}')
 
 resp = sock.recvfrom(1024).decode('utf-8')
