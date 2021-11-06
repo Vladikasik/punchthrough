@@ -11,8 +11,8 @@ def exchange(sock):
     data2 = data2.decode('utf-8')
     print(f'"{data2}" <- {addr2}')
 
-    data1 = data1 + '$' + str(addr1[0]) + str(addr1[1])
-    data2 = data2 + '$' + str(addr2[0]) + str(addr2[1])
+    data1 = data1 + '$' + str(addr1[0]) + '#' + str(addr1[1])
+    data2 = data2 + '$' + str(addr2[0]) + '#' + str(addr2[1])
     
     sock.sendto(data1.encode('utf-8'), addr2)
     sock.sendto(data2.encode('utf-8'), addr1)
