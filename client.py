@@ -15,7 +15,7 @@ resp = resp.decode('utf-8')
 print(f'got data from server -> "{resp}"')
 
 def call_other(addr, sock):
-    while 1:
+    for _ in range(5):
         print(f'"test" -> {addr}')
         sock.sendto(b'test', addr)
         
@@ -25,11 +25,11 @@ def listen(sock):
         print(f'{resp} <- "{addr}"')
     
 public = resp.split('$')[0].split('#')
-pb_addr = (public[0][1:], int(public[1][:-1]))
+pb_addr = (public[0], int(public[1]))
 print('another node pb_addr', pb_addr) 
 
 private = resp.split('$')[1].split('#')
-pr_addr = (private[0][1:], int(private[1][:-1]))
+pr_addr = (private[0], int(private[1]))
 print('another node pr_addr', pr_addr)
 
 pub = th.Thread(target=call_other, args=[pb_addr, sock])
