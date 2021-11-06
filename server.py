@@ -4,8 +4,8 @@ sock = socket(AF_INET, SOCK_DGRAM)
 sock.bind(server)
 def exchange(sock):
     data1, addr1 = sock.recvfrom(1024)
-    data2, addr2 = sock.recvfrom(1024)
     print(f'"{data1}" <- {addr1}')
+    data2, addr2 = sock.recvfrom(1024)
     print(f'"{data2}" <- {addr2}')
 
     data1 = data1 + '$' + addr1[0] + addr1[1]
