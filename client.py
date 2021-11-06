@@ -47,6 +47,7 @@ if __name__ == '__main__':
     priv = mp.Process(target=call_other, args=(pr_addr, sock,))
     
     print("make shure all others received msg from server")
+    time.sleep(2)
 
     lstn.start()
     pub.start()
