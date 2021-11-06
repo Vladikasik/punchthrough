@@ -16,9 +16,9 @@ print(f'got data from server -> "{resp}"')
 
 def call_other(addr, sock):
     while 1:
-        sock.sendto(b'test', addr)
         print(f'"test" -> {addr}')
-    
+        sock.sendto(b'test', addr)
+        
 def listen(sock):
     while 1:
         resp, addr = sock.recvfrom(1024).decode('utf-8')
@@ -37,4 +37,4 @@ priv = th.Thread(target=call_other, args=[pr_addr, sock])
 lstn = th.Thread(target=listen, args=[sock])
 lstn.start()
 pub.start()
-priv.strart()
+priv.start()
